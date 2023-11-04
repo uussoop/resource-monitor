@@ -8,7 +8,7 @@ import (
 	resourceapi "github.com/uussoop/resource-monitor/pkg/resourceApi"
 )
 
-func Monitor(cpuTop int, diskTop int, memTop int) {
+func Monitor(cpuTop int, memTop int, diskTop int) {
 	for {
 
 		cpuUtilization, _ := resourceapi.GetCpuUtilization()

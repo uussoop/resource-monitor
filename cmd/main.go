@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"sync"
 
 	"github.com/uussoop/resource-monitor/api"
 )
@@ -9,8 +10,11 @@ import (
 func main() {
 	os.Setenv("TELEGRAM_ADMINID", "")
 	os.Setenv("TELEGRAM_APITOKEN", "")
-	go api.SimpleMonitoring(80, 80, 80)
+	wg := sync.WaitGroup{}
+	go func() {
+		wg.Add(1)
+		api.SimpleMonitoring(80, 80, 80)
+	}()
+	wg.Wait()
 
-	for {
-	}
 }
