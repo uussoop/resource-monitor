@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"sync"
 
@@ -10,11 +11,14 @@ import (
 func main() {
 	os.Setenv("TELEGRAM_ADMINID", "")
 	os.Setenv("TELEGRAM_APITOKEN", "")
-	wg := sync.WaitGroup{}
-	go func() {
-		wg.Add(1)
-		api.SimpleMonitoring(80, 80, 80)
-	}()
-	wg.Wait()
 
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func(wg *sync.WaitGroup) {
+		fmt.Println("Starting monitoring")
+
+		api.SimpleMonitoring(80, 95, 80)
+	}(&wg)
+
+	wg.Wait()
 }

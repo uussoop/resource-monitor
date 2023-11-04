@@ -9,6 +9,7 @@ import (
 )
 
 func Monitor(cpuTop int, memTop int, diskTop int) {
+
 	for {
 
 		cpuUtilization, _ := resourceapi.GetCpuUtilization()
