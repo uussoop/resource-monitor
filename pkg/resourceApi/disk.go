@@ -25,16 +25,6 @@ func getDiskUsage() ([]int, error) {
 		}
 		if strings.Contains(d.Device, "dev") {
 
-			// fmt.Printf("Disk: %s\n", d.Device)
-
-			// fmt.Printf("Mountpoint: %s\n", d.Mountpoint)
-			// fmt.Printf("op: %s\n", d.Opts)
-
-			// fmt.Printf("Total: %d B\n", usage.Total)
-			// fmt.Printf("Used: %d B\n", usage.Used)
-			// fmt.Printf("Free: %d B\n", usage.Free)
-			// fmt.Printf("UsedPercent: %.2f%%\n", usage.UsedPercent)
-			// fmt.Println("-----------------------------------------")
 			diskUsage = append(diskUsage, int(usage.UsedPercent))
 		}
 	}
@@ -42,9 +32,7 @@ func getDiskUsage() ([]int, error) {
 }
 
 func CheckIfAnyDeviceReachingQouta(quota int) bool {
-	// if quota == nil {
-	// 	return false
-	// }
+
 	diskUsage, err := getDiskUsage()
 	if err != nil {
 		return false

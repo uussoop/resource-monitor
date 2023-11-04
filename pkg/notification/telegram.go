@@ -10,18 +10,18 @@ import (
 var BotToken string
 var AdminId string
 var lastMessage time.Time
+var Bot *tgbotapi.BotAPI
 
 func SendTelegramMessage(message string) {
 
 	adminIdInt, err := (strconv.Atoi(AdminId))
 
-	bot, err := tgbotapi.NewBotAPI(BotToken)
 	if err != nil {
 		panic(err)
 	}
 	if time.Since(lastMessage).Seconds() < 60 {
 		return
 	}
-	bot.Send(tgbotapi.NewMessage(int64(adminIdInt), message))
+	Bot.Send(tgbotapi.NewMessage(int64(adminIdInt), message))
 	lastMessage = time.Now()
 }
