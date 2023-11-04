@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"time"
 
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/uussoop/resource-monitor/pkg/notification"
 	resourceapi "github.com/uussoop/resource-monitor/pkg/resourceApi"
 )
 
 func Monitor(cpuTop int, memTop int, diskTop int) {
-
+	notification.Bot.Send(tgbotapi.NewMessage(notification.AdminIdInt, "Starting monitoring"))
 	for {
 
 		cpuUtilization, _ := resourceapi.GetCpuUtilization()

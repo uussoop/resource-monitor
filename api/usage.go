@@ -2,6 +2,7 @@ package api
 
 import (
 	"os"
+	"strconv"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/uussoop/resource-monitor/pkg/notification"
@@ -19,6 +20,12 @@ func SimpleMonitoring(cpu int, memory int, disk int) {
 	}
 	var err error
 	notification.Bot, err = tgbotapi.NewBotAPI(notification.BotToken)
+	if err != nil {
+		panic(err)
+	}
+	dummy, err := strconv.Atoi(notification.AdminId)
+	notification.AdminIdInt = int64(dummy)
+
 	if err != nil {
 		panic(err)
 	}

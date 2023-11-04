@@ -2,15 +2,12 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"sync"
 
 	"github.com/uussoop/resource-monitor/api"
 )
 
 func main() {
-	os.Setenv("TELEGRAM_ADMINID", "")
-	os.Setenv("TELEGRAM_APITOKEN", "")
 
 	var wg sync.WaitGroup
 	wg.Add(1)
